@@ -13,6 +13,10 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ChatThreadIdRouteImport } from './routes/chat.$threadId'
 import { Route as ProjectProjectIdRouteImport } from './routes/project.$projectId'
+import { Route as ApiAiChatRouteImport } from './routes/api/ai/chat'
+import { Route as ApiAiModelsRouteImport } from './routes/api/ai/models'
+import { Route as ApiAiSpeakRouteImport } from './routes/api/ai/speak'
+import { Route as ApiAiTranscribeRouteImport } from './routes/api/ai/transcribe'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +38,46 @@ const ProjectProjectIdRoute = ProjectProjectIdRouteImport.update({
   path: '/project/$projectId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAiChatRoute = ApiAiChatRouteImport.update({
+  id: '/api/ai/chat',
+  path: '/api/ai/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAiModelsRoute = ApiAiModelsRouteImport.update({
+  id: '/api/ai/models',
+  path: '/api/ai/models',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAiSpeakRoute = ApiAiSpeakRouteImport.update({
+  id: '/api/ai/speak',
+  path: '/api/ai/speak',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAiTranscribeRoute = ApiAiTranscribeRouteImport.update({
+  id: '/api/ai/transcribe',
+  path: '/api/ai/transcribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/settings': typeof SettingsRoute
   '/chat/$threadId': typeof ChatThreadIdRoute
   '/project/$projectId': typeof ProjectProjectIdRoute
+  '/api/ai/chat': typeof ApiAiChatRoute
+  '/api/ai/models': typeof ApiAiModelsRoute
+  '/api/ai/speak': typeof ApiAiSpeakRoute
+  '/api/ai/transcribe': typeof ApiAiTranscribeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/settings': typeof SettingsRoute
   '/chat/$threadId': typeof ChatThreadIdRoute
   '/project/$projectId': typeof ProjectProjectIdRoute
+  '/api/ai/chat': typeof ApiAiChatRoute
+  '/api/ai/models': typeof ApiAiModelsRoute
+  '/api/ai/speak': typeof ApiAiSpeakRoute
+  '/api/ai/transcribe': typeof ApiAiTranscribeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +85,42 @@ export interface FileRoutesById {
   '/settings': typeof SettingsRoute
   '/chat/$threadId': typeof ChatThreadIdRoute
   '/project/$projectId': typeof ProjectProjectIdRoute
+  '/api/ai/chat': typeof ApiAiChatRoute
+  '/api/ai/models': typeof ApiAiModelsRoute
+  '/api/ai/speak': typeof ApiAiSpeakRoute
+  '/api/ai/transcribe': typeof ApiAiTranscribeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/settings' | '/chat/$threadId' | '/project/$projectId'
+  fullPaths:
+    | '/'
+    | '/settings'
+    | '/chat/$threadId'
+    | '/project/$projectId'
+    | '/api/ai/chat'
+    | '/api/ai/models'
+    | '/api/ai/speak'
+    | '/api/ai/transcribe'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/settings' | '/chat/$threadId' | '/project/$projectId'
-  id: '__root__' | '/' | '/settings' | '/chat/$threadId' | '/project/$projectId'
+  to:
+    | '/'
+    | '/settings'
+    | '/chat/$threadId'
+    | '/project/$projectId'
+    | '/api/ai/chat'
+    | '/api/ai/models'
+    | '/api/ai/speak'
+    | '/api/ai/transcribe'
+  id:
+    | '__root__'
+    | '/'
+    | '/settings'
+    | '/chat/$threadId'
+    | '/project/$projectId'
+    | '/api/ai/chat'
+    | '/api/ai/models'
+    | '/api/ai/speak'
+    | '/api/ai/transcribe'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +128,10 @@ export interface RootRouteChildren {
   SettingsRoute: typeof SettingsRoute
   ChatThreadIdRoute: typeof ChatThreadIdRoute
   ProjectProjectIdRoute: typeof ProjectProjectIdRoute
+  ApiAiChatRoute: typeof ApiAiChatRoute
+  ApiAiModelsRoute: typeof ApiAiModelsRoute
+  ApiAiSpeakRoute: typeof ApiAiSpeakRoute
+  ApiAiTranscribeRoute: typeof ApiAiTranscribeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +164,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectProjectIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/ai/chat': {
+      id: '/api/ai/chat'
+      path: '/api/ai/chat'
+      fullPath: '/api/ai/chat'
+      preLoaderRoute: typeof ApiAiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/ai/models': {
+      id: '/api/ai/models'
+      path: '/api/ai/models'
+      fullPath: '/api/ai/models'
+      preLoaderRoute: typeof ApiAiModelsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/ai/speak': {
+      id: '/api/ai/speak'
+      path: '/api/ai/speak'
+      fullPath: '/api/ai/speak'
+      preLoaderRoute: typeof ApiAiSpeakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/ai/transcribe': {
+      id: '/api/ai/transcribe'
+      path: '/api/ai/transcribe'
+      fullPath: '/api/ai/transcribe'
+      preLoaderRoute: typeof ApiAiTranscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +200,10 @@ const rootRouteChildren: RootRouteChildren = {
   SettingsRoute: SettingsRoute,
   ChatThreadIdRoute: ChatThreadIdRoute,
   ProjectProjectIdRoute: ProjectProjectIdRoute,
+  ApiAiChatRoute: ApiAiChatRoute,
+  ApiAiModelsRoute: ApiAiModelsRoute,
+  ApiAiSpeakRoute: ApiAiSpeakRoute,
+  ApiAiTranscribeRoute: ApiAiTranscribeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
