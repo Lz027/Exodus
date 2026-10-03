@@ -14,7 +14,315 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      activity_events: {
+        Row: {
+          created_at: string
+          event_type: string
+          id: string
+          metadata: Json
+          project_id: string | null
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          event_type: string
+          id?: string
+          metadata?: Json
+          project_id?: string | null
+          title: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          event_type?: string
+          id?: string
+          metadata?: Json
+          project_id?: string | null
+          title?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "activity_events_project_id_user_id_fkey"
+            columns: ["project_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id", "user_id"]
+          },
+        ]
+      }
+      conversations: {
+        Row: {
+          created_at: string
+          id: string
+          project_id: string | null
+          title: string
+          updated_at: string
+          user_id: string
+          workspace_type: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          project_id?: string | null
+          title?: string
+          updated_at?: string
+          user_id: string
+          workspace_type: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          project_id?: string | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+          workspace_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "conversations_project_id_user_id_fkey"
+            columns: ["project_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id", "user_id"]
+          },
+        ]
+      }
+      messages: {
+        Row: {
+          content: string
+          conversation_id: string
+          created_at: string
+          id: string
+          model: string | null
+          role: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          conversation_id: string
+          created_at?: string
+          id?: string
+          model?: string | null
+          role: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          conversation_id?: string
+          created_at?: string
+          id?: string
+          model?: string | null
+          role?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_conversation_id_user_id_fkey"
+            columns: ["conversation_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "conversations"
+            referencedColumns: ["id", "user_id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      project_files: {
+        Row: {
+          created_at: string
+          file_name: string
+          file_size: number
+          file_type: string
+          id: string
+          project_id: string
+          storage_path: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          file_name: string
+          file_size: number
+          file_type: string
+          id?: string
+          project_id: string
+          storage_path: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          file_name?: string
+          file_size?: number
+          file_type?: string
+          id?: string
+          project_id?: string
+          storage_path?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_files_project_id_user_id_fkey"
+            columns: ["project_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id", "user_id"]
+          },
+        ]
+      }
+      project_memory: {
+        Row: {
+          category: string
+          content: string
+          created_at: string
+          id: string
+          pinned: boolean
+          project_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          category?: string
+          content: string
+          created_at?: string
+          id?: string
+          pinned?: boolean
+          project_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          category?: string
+          content?: string
+          created_at?: string
+          id?: string
+          pinned?: boolean
+          project_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_memory_project_id_user_id_fkey"
+            columns: ["project_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id", "user_id"]
+          },
+        ]
+      }
+      projects: {
+        Row: {
+          complexity: string
+          created_at: string
+          description: string
+          design_direction: string
+          id: string
+          name: string
+          project_type: string
+          repository_status: string
+          starting_stack: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          complexity?: string
+          created_at?: string
+          description?: string
+          design_direction?: string
+          id?: string
+          name: string
+          project_type?: string
+          repository_status?: string
+          starting_stack?: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          complexity?: string
+          created_at?: string
+          description?: string
+          design_direction?: string
+          id?: string
+          name?: string
+          project_type?: string
+          repository_status?: string
+          starting_stack?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      tasks: {
+        Row: {
+          created_at: string
+          description: string
+          id: string
+          priority: string
+          project_id: string
+          status: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          id?: string
+          priority?: string
+          project_id: string
+          status?: string
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          id?: string
+          priority?: string
+          project_id?: string
+          status?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tasks_project_id_user_id_fkey"
+            columns: ["project_id", "user_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id", "user_id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
