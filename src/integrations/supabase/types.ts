@@ -56,6 +56,7 @@ export type Database = {
         Row: {
           created_at: string
           id: string
+          model_profile: string | null
           project_id: string | null
           title: string
           updated_at: string
@@ -65,6 +66,7 @@ export type Database = {
         Insert: {
           created_at?: string
           id?: string
+          model_profile?: string | null
           project_id?: string | null
           title?: string
           updated_at?: string
@@ -74,6 +76,7 @@ export type Database = {
         Update: {
           created_at?: string
           id?: string
+          model_profile?: string | null
           project_id?: string | null
           title?: string
           updated_at?: string
@@ -92,30 +95,48 @@ export type Database = {
       }
       messages: {
         Row: {
+          attachments: Json
+          capability: string | null
           content: string
           conversation_id: string
           created_at: string
+          fallback_used: boolean
           id: string
           model: string | null
+          model_label: string | null
+          provider: string | null
           role: string
+          status: string
           user_id: string
         }
         Insert: {
+          attachments?: Json
+          capability?: string | null
           content: string
           conversation_id: string
           created_at?: string
+          fallback_used?: boolean
           id?: string
           model?: string | null
+          model_label?: string | null
+          provider?: string | null
           role: string
+          status?: string
           user_id: string
         }
         Update: {
+          attachments?: Json
+          capability?: string | null
           content?: string
           conversation_id?: string
           created_at?: string
+          fallback_used?: boolean
           id?: string
           model?: string | null
+          model_label?: string | null
+          provider?: string | null
           role?: string
+          status?: string
           user_id?: string
         }
         Relationships: [
