@@ -25,8 +25,9 @@ export function WorkspaceShell({page}:{page:Page}){
  const thread=page.kind==="chat"?threads.find(t=>t.id===page.threadId)??threads[0]:undefined;
  const projectId=page.kind==="project"?page.projectId:thread?.projectId??"exodus"; const project=projects.find(p=>p.id===projectId)??projects[2];
  const workspace=thread?.workspace??"general";
+ if (!project) return null;
  const updateThreads=(next:Thread[])=>{setThreads(next);saveThreads(next)};
- const newChat=(type:Workspace=workspace)=>{const id=`chat-${Date.now()}`;const next:Thread={id,title:"New conversation",workspace:type,projectId:project?.id,updatedAt:"Now",messages:[]};updateThreads([next,...threads]);setMobileNav(false);navigate({to:"/chat/$threadId",params:{threadId:id}})};
+ const newChat=(type:Workspace=workspace)=>{const id=`chat-${Date.now()}`;const next:Thread={id,title:"New conversation",workspace:type,projectId:project.id,updatedAt:"Now",messages:[]};updateThreads([next,...threads]);setMobileNav(false);navigate({to:"/chat/$threadId",params:{threadId:id}})};
  const flash=(value:string)=>{setNotice(value);setTimeout(()=>setNotice(""),2200)};
  return <div className="h-dvh overflow-hidden bg-background text-foreground">
   <AnimatePresence>{notice&&<motion.div initial={{opacity:0,y:-8}} animate={{opacity:1,y:0}} exit={{opacity:0}} className="fixed left-1/2 top-4 z-[80] -translate-x-1/2 rounded-md border border-primary/20 bg-popover px-4 py-2 text-sm shadow-soft"><Check className="mr-2 inline size-4 text-primary"/>{notice}</motion.div>}</AnimatePresence>
