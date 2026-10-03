@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { WorkspaceShell } from "@/components/exodus/workspace-shell";
+export const Route=createFileRoute("/settings")({head:()=>({meta:[{title:"Models and tools — Exodus"},{name:"description",content:"Manage simulated models and tools for the Exodus workspace."},{property:"og:title",content:"Models and tools — Exodus"},{property:"og:description",content:"Manage simulated models and tools for the Exodus workspace."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:()=> <WorkspaceShell page={{kind:"settings"}}/>});
