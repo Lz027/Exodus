@@ -8,6 +8,13 @@
       "when": 1791027085366,
       "tag": "0000_exodus_core",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791040000000,
+      "tag": "0001_message_model_metadata",
+      "breakpoints": true
     }
   ]
 }
