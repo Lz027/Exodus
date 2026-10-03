@@ -8,3 +8,8 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Project architecture
+
+- Keep prototype data and browser persistence behind `src/lib/exodus-*`; this preserves a replaceable boundary for future real services.
+- Use dedicated TanStack routes for conversations, projects, and settings so navigation and reload state remain stable.
