@@ -1,5 +1,10 @@
 # Exodus roadmap
-- [ ] Finish visual/runtime validation of prototype and match accents to supplied logo.
-- [ ] Replace local demo foundation with Lovable Cloud auth and user-owned persistent project data.
-- [ ] Wire secure Kimi chat and persist messages, files, tasks, memory, activity, settings.
-- [ ] Create future Supabase migration package and verify desktop/mobile flows.
+- [x] Lovable Cloud schema, storage bucket, Groq key saved.
+- [ ] Redesign: magenta-only brand tokens, Manrope everywhere, quiet sidebar, signature composer, open-canvas messages.
+- [ ] Real auth screen + protected workspace (replace demo sign-in).
+- [ ] Groq policy (Kimi K2 0905 first), model discovery, Kimi guarantee with confirmation, safety layer, usage events.
+- [ ] Real chat: persistence, rename, delete, regenerate, edit & resend, copy, stop, retry.
+- [ ] Voice (Whisper), Speak (Orpheus), Vision attachment with unavailable state.
+- [ ] Usage & Safety settings page.
+- [ ] Docs + supabase/schema.sql + supabase/README.md.
+- [ ] Test desktop/mobile, chat, stop, secrets.
