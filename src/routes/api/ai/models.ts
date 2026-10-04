@@ -7,7 +7,7 @@ export const Route = createFileRoute("/api/ai/models")({
       GET: async ({ request }) => {
         try {
           await requireUser(request);
-          return Response.json({ availability: await availability() }, { headers: { "Cache-Control": "private, max-age=60" } });
+          return Response.json(await availability(), { headers: { "Cache-Control": "private, max-age=30" } });
         } catch (e) {
           return errorResponse(e);
         }
