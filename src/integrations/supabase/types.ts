@@ -97,14 +97,19 @@ export type Database = {
         Row: {
           attachments: Json
           capability: string | null
+          client_request_id: string | null
           content: string
           conversation_id: string
           created_at: string
+          fallback_reason: string | null
           fallback_used: boolean
           id: string
+          input_tokens: number | null
           model: string | null
           model_label: string | null
+          output_tokens: number | null
           provider: string | null
+          requested_model_id: string | null
           role: string
           status: string
           user_id: string
@@ -112,14 +117,19 @@ export type Database = {
         Insert: {
           attachments?: Json
           capability?: string | null
+          client_request_id?: string | null
           content: string
           conversation_id: string
           created_at?: string
+          fallback_reason?: string | null
           fallback_used?: boolean
           id?: string
+          input_tokens?: number | null
           model?: string | null
           model_label?: string | null
+          output_tokens?: number | null
           provider?: string | null
+          requested_model_id?: string | null
           role: string
           status?: string
           user_id: string
@@ -127,14 +137,19 @@ export type Database = {
         Update: {
           attachments?: Json
           capability?: string | null
+          client_request_id?: string | null
           content?: string
           conversation_id?: string
           created_at?: string
+          fallback_reason?: string | null
           fallback_used?: boolean
           id?: string
+          input_tokens?: number | null
           model?: string | null
           model_label?: string | null
+          output_tokens?: number | null
           provider?: string | null
+          requested_model_id?: string | null
           role?: string
           status?: string
           user_id?: string
@@ -341,6 +356,56 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "projects"
             referencedColumns: ["id", "user_id"]
+          },
+        ]
+      }
+      usage_events: {
+        Row: {
+          actual_model_id: string | null
+          capability: string | null
+          conversation_id: string | null
+          created_at: string
+          detail: string | null
+          id: string
+          input_tokens: number
+          kind: string
+          output_tokens: number
+          requested_model_id: string | null
+          user_id: string
+        }
+        Insert: {
+          actual_model_id?: string | null
+          capability?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          detail?: string | null
+          id?: string
+          input_tokens?: number
+          kind: string
+          output_tokens?: number
+          requested_model_id?: string | null
+          user_id: string
+        }
+        Update: {
+          actual_model_id?: string | null
+          capability?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          detail?: string | null
+          id?: string
+          input_tokens?: number
+          kind?: string
+          output_tokens?: number
+          requested_model_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "usage_events_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "conversations"
+            referencedColumns: ["id"]
           },
         ]
       }
