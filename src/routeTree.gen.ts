@@ -17,6 +17,7 @@ import { Route as ApiAiChatRouteImport } from './routes/api/ai/chat'
 import { Route as ApiAiModelsRouteImport } from './routes/api/ai/models'
 import { Route as ApiAiSpeakRouteImport } from './routes/api/ai/speak'
 import { Route as ApiAiTranscribeRouteImport } from './routes/api/ai/transcribe'
+import { Route as ApiAiUsageRouteImport } from './routes/api/ai/usage'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,6 +59,11 @@ const ApiAiTranscribeRoute = ApiAiTranscribeRouteImport.update({
   path: '/api/ai/transcribe',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAiUsageRoute = ApiAiUsageRouteImport.update({
+  id: '/api/ai/usage',
+  path: '/api/ai/usage',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/api/ai/models': typeof ApiAiModelsRoute
   '/api/ai/speak': typeof ApiAiSpeakRoute
   '/api/ai/transcribe': typeof ApiAiTranscribeRoute
+  '/api/ai/usage': typeof ApiAiUsageRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/api/ai/models': typeof ApiAiModelsRoute
   '/api/ai/speak': typeof ApiAiSpeakRoute
   '/api/ai/transcribe': typeof ApiAiTranscribeRoute
+  '/api/ai/usage': typeof ApiAiUsageRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/api/ai/models': typeof ApiAiModelsRoute
   '/api/ai/speak': typeof ApiAiSpeakRoute
   '/api/ai/transcribe': typeof ApiAiTranscribeRoute
+  '/api/ai/usage': typeof ApiAiUsageRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/api/ai/models'
     | '/api/ai/speak'
     | '/api/ai/transcribe'
+    | '/api/ai/usage'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/api/ai/models'
     | '/api/ai/speak'
     | '/api/ai/transcribe'
+    | '/api/ai/usage'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/api/ai/models'
     | '/api/ai/speak'
     | '/api/ai/transcribe'
+    | '/api/ai/usage'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +144,7 @@ export interface RootRouteChildren {
   ApiAiModelsRoute: typeof ApiAiModelsRoute
   ApiAiSpeakRoute: typeof ApiAiSpeakRoute
   ApiAiTranscribeRoute: typeof ApiAiTranscribeRoute
+  ApiAiUsageRoute: typeof ApiAiUsageRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -192,6 +205,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAiTranscribeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/ai/usage': {
+      id: '/api/ai/usage'
+      path: '/api/ai/usage'
+      fullPath: '/api/ai/usage'
+      preLoaderRoute: typeof ApiAiUsageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -204,6 +224,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAiModelsRoute: ApiAiModelsRoute,
   ApiAiSpeakRoute: ApiAiSpeakRoute,
   ApiAiTranscribeRoute: ApiAiTranscribeRoute,
+  ApiAiUsageRoute: ApiAiUsageRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
